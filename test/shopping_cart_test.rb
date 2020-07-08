@@ -52,22 +52,18 @@ class ShoppingCartTest < Minitest::Test
   end
 
 
-  def can_it_show_hoard_status
-    skip
+  def test_it_can_show_details
+    # skip
+    cart = ShoppingCart.new("King Soopers", "30items")
     product1 = Product.new(:paper, 'toilet paper', 3.70, '10')
     product2 = Product.new(:meat, 'chicken', 4.50, '2')
+    cart.add_product(product1)
+    cart.add_product(product2)
 
 
-    assert_equal false, product2.is_hoarded?
+    assert_equal "King Soopers, capacity: 30", cart.details
   end
 
-  def can_it_can_be_hoarded
-    skip
-    product1 = Product.new(:paper, 'toilet paper', 3.70, '10')
-    product2 = Product.new(:meat, 'chicken', 4.50, '2')
-    product2.hoard
 
-    assert_equal true, product2.is_hoarded?
-  end
 
 end
