@@ -85,11 +85,20 @@ class ShoppingCartTest < Minitest::Test
     cart.add_product(product1)
     cart.add_product(product2)
 
-
     assert_equal true, cart.is_full?
   end
 
+  def test_it_can_show_products_by_category
+    cart = ShoppingCart.new("King Soopers", "30items")
+    product1 = Product.new(:paper, 'toilet paper', 3.70, '20')
+    product2 = Product.new(:meat, 'chicken', 4.50, '10')
+    product3 = Product.new(:meat, 'fish', 7.50, '2')
+    cart.add_product(product1)
+    cart.add_product(product2)
+    cart.add_product(product3)
 
 
+    assert_equal 2, cart.products_by_category(:meat).length
+  end
 
 end

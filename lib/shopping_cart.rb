@@ -25,6 +25,10 @@ class ShoppingCart
     item_numbers}.inject(:+)
   end
 
+  def products_by_category(category)
+    @products.find_all{ |item| item.product == category}
+  end
+
 end
 
 
