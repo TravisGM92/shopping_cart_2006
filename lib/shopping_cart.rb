@@ -17,16 +17,30 @@ class ShoppingCart
   end
 
   def details
-    "#{@name}, capacity: #{@capacity}"
+    {name: self.name,
+    capacity: self.capacity}
   end
 
   def is_full?
-    @capacity <= @products.collect{ |item| item_numbers = item.quantity
-    item_numbers}.inject(:+)
+    @capacity <= total_number_of_products
   end
 
   def products_by_category(category)
     @products.find_all{ |item| item.product == category}
+  end
+
+  def total_number_of_products
+    @products.collect{ |item| item_numbers = item.quantity
+    item_numbers}.inject(:+)
+
+  end
+
+  def percentage_occupied
+    ((total_number_of_products.to_f / @capacity.to_f) * 100).round(2)
+  end
+
+  def sorted_products_by_category
+    @products.sort_by{ |product| product.category}
   end
 
 end

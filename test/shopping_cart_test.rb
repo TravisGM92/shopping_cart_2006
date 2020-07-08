@@ -59,9 +59,9 @@ class ShoppingCartTest < Minitest::Test
     product2 = Product.new(:meat, 'chicken', 4.50, '2')
     cart.add_product(product1)
     cart.add_product(product2)
+    deets = {:name=>"King Soopers", :capacity=>30}
 
-
-    assert_equal "King Soopers, capacity: 30", cart.details
+    assert_equal deets, cart.details
   end
 
 
@@ -99,6 +99,46 @@ class ShoppingCartTest < Minitest::Test
 
 
     assert_equal 2, cart.products_by_category(:meat).length
+  end
+
+  def test_it_can_show_total_number_of_products
+    cart = ShoppingCart.new("King Soopers", "30items")
+    product1 = Product.new(:paper, 'toilet paper', 3.70, '20')
+    product2 = Product.new(:meat, 'chicken', 4.50, '10')
+    product3 = Product.new(:meat, 'fish', 7.50, '2')
+    cart.add_product(product1)
+    cart.add_product(product2)
+    cart.add_product(product3)
+
+
+    assert_equal 32, cart.total_number_of_products
+  end
+
+  def test_it_can_show_total_number_of_products
+    cart = ShoppingCart.new("King Soopers", "30items")
+    product1 = Product.new(:paper, 'toilet paper', 3.70, '5')
+    product2 = Product.new(:meat, 'chicken', 4.50, '3')
+    product3 = Product.new(:meat, 'fish', 7.50, '2')
+    cart.add_product(product1)
+    cart.add_product(product2)
+    cart.add_product(product3)
+
+
+    assert_equal 33.33, cart.percentage_occupied
+  end
+
+  def test_it_can_sort_by_category
+    cart = ShoppingCart.new("King Soopers", "30items")
+    product1 = Product.new(:meat, 'chicken', 4.50, '3')
+    product2 = Product.new(:paper, 'toilet paper', 3.70, '5')
+    product3 = Product.new(:meat, 'fish', 7.50, '2')
+    product4 = Product.new(:paper, 'writting paper', 2.50, '4')
+    cart.add_product(product1)
+    cart.add_product(product2)
+    cart.add_product(product3)
+    cart.add_product(product4)
+
+    assert_equal 4, cart.sorted_products_by_category.length
   end
 
 end
