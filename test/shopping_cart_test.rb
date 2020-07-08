@@ -6,26 +6,30 @@ require './lib/shopping_cart'
 class ShoppingCartTest < Minitest::Test
   #Iteration1
   def test_it_exists
-    product = Product.new(:paper, 'toilet paper', 3.70, '10')
-    assert_instance_of Product, product
-  end
 
-  def test_it_has_a_category
-    skip
-    product = Product.new(:paper, 'toilet paper', 3.70, '10')
-    assert_equal :paper, product.category
+    cart = ShoppingCart.new("King Soopers", "30items")
+
+    assert_instance_of ShoppingCart, cart
   end
 
   def test_it_has_a_name
-    skip
-    product = Product.new(:paper, 'toilet paper', 3.70, '10')
-    assert_equal 'toilet paper', product.name
+    # skip
+    cart = ShoppingCart.new("King Soopers", "30items")
+
+
+    assert_equal "King Soopers", cart.name
   end
 
-  def test_it_has_a_unit_price
-    skip
-    product = Product.new(:paper, 'toilet paper', 3.70, '10')
-    assert_equal 3.70, product.unit_price
+  def test_it_has_capacity
+    cart = ShoppingCart.new("King Soopers", "30items")
+
+    assert_equal 30, cart.capacity
+  end
+
+  def test_it_exists
+    cart = ShoppingCart.new("King Soopers", "30items")
+
+    assert_instance_of ShoppingCart, cart
   end
 
   def test_it_has_a_quantity
