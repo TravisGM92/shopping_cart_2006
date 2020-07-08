@@ -57,12 +57,12 @@ class ShoppingCart
 end
 
 
-cart = ShoppingCart.new("King Soopers", "30items")
-product1 = Product.new(:paper, 'toilet paper', 3.70, '20')
-product2 = Product.new(:meat, 'chicken', 4.50, '10')
-product3 = Product.new(:meat, 'fish', 7.50, '2')
-cart.add_product(product1)
-cart.add_product(product2)
-cart.add_product(product3)
-
-p cart.product_breakdown
+# cart = ShoppingCart.new("King Soopers", "30items")
+# product1 = Product.new(:paper, 'toilet paper', 3.70, '20')
+# product2 = Product.new(:meat, 'chicken', 4.50, '10')
+# product3 = Product.new(:meat, 'fish', 7.50, '2')
+# cart.add_product(product1)
+# cart.add_product(product2)
+# cart.add_product(product3)
+#
+# p cart.product_breakdown
