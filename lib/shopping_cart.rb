@@ -3,13 +3,14 @@ require './lib/product'
 
 class ShoppingCart
 
-  attr_reader :name, :capacity
+  attr_reader :name, :capacity, :cat
   attr_accessor :products
 
   def initialize(name, capacity)
     @name = name
     @capacity = capacity.to_i
     @products = []
+    @cat = cat
   end
 
   def add_product(product)
@@ -47,16 +48,30 @@ class ShoppingCart
     @products.sort_by{ |product| product.quantity}
   end
 
+  def product_hash
+    Hash.new
+  end
+
   def product_breakdown
-    my_hash = Hash.new
-    categories = sorted_products_by_category.collect{ |item| item.product}
-    categories.each{ |item| my_hash[item] = @products.select{ |item| item.product == my_hash[item]}}
-    my_hash
+    categories = @products.collect{ |item| item.category}.uniq
+    x = 0
+    my_hash = {}
+    while x != categories.length
+      my_hash[categories[x]] = nil
+      x +=1
+    end
+
+    y = 0
+    while y != categories.length
+      my_hash[categories[y]] = @products.select{ |item| item.category == my_hash.keys[y]}
+      y += 1
+    end
+    p my_hash
   end
 
 end
 
-
+# 
 # cart = ShoppingCart.new("King Soopers", "30items")
 # product1 = Product.new(:paper, 'toilet paper', 3.70, '20')
 # product2 = Product.new(:meat, 'chicken', 4.50, '10')
@@ -65,4 +80,4 @@ end
 # cart.add_product(product2)
 # cart.add_product(product3)
 #
-# p cart.product_breakdown
+# cart.product_breakdown

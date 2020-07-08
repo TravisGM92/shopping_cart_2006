@@ -166,7 +166,7 @@ class ShoppingCartTest < Minitest::Test
     cart.add_product(product3)
     cart.add_product(product4)
 
-    assert_equal 4, cart.product_breakdown
+    assert_equal 2, cart.product_breakdown.length
   end
 
 end
