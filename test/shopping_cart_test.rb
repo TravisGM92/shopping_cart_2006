@@ -32,20 +32,25 @@ class ShoppingCartTest < Minitest::Test
     assert_instance_of ShoppingCart, cart
   end
 
-  def test_it_has_a_quantity
-    skip
-    product = Product.new(:paper, 'toilet paper', 3.70, '10')
-    assert_equal 10, product.quantity
+  def test_it_can_show_products
+    cart = ShoppingCart.new("King Soopers", "30items")
+
+    assert_equal [], cart.products
   end
 
-  def test_it_can_get_total_price
-    skip
+
+  def test_it_can_add_products
+    # skip
+    cart = ShoppingCart.new("King Soopers", "30items")
     product1 = Product.new(:paper, 'toilet paper', 3.70, '10')
     product2 = Product.new(:meat, 'chicken', 4.50, '2')
+    cart.add_product(product1)
+    cart.add_product(product2)
 
-    assert_equal 37.0, product1.total_price
-    assert_equal 9.0, product2.total_price
+
+    assert_equal 2, cart.products.length
   end
+
 
   def can_it_show_hoard_status
     skip
