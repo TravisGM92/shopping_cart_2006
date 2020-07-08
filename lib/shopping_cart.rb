@@ -48,10 +48,6 @@ class ShoppingCart
     @products.sort_by{ |product| product.quantity}
   end
 
-  def product_hash
-    Hash.new
-  end
-
   def product_breakdown
     categories = @products.collect{ |item| item.category}.uniq
     x = 0
@@ -66,12 +62,12 @@ class ShoppingCart
       my_hash[categories[y]] = @products.select{ |item| item.category == my_hash.keys[y]}
       y += 1
     end
-    p my_hash
+    my_hash
   end
 
 end
 
-# 
+#
 # cart = ShoppingCart.new("King Soopers", "30items")
 # product1 = Product.new(:paper, 'toilet paper', 3.70, '20')
 # product2 = Product.new(:meat, 'chicken', 4.50, '10')
