@@ -43,6 +43,12 @@ class ShoppingCart
     @products.sort_by{ |product| product.category}
   end
 
+  def sorted_products_by_quantity
+    @products.sort_by{ |product| product.quantity}
+  end
+
+
+
 end
 
 

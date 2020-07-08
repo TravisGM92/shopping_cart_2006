@@ -141,4 +141,18 @@ class ShoppingCartTest < Minitest::Test
     assert_equal 4, cart.sorted_products_by_category.length
   end
 
+  def test_it_can_sort_by_quantity
+    cart = ShoppingCart.new("King Soopers", "30items")
+    product1 = Product.new(:meat, 'chicken', 4.50, '3')
+    product2 = Product.new(:paper, 'toilet paper', 3.70, '5')
+    product3 = Product.new(:meat, 'fish', 7.50, '2')
+    product4 = Product.new(:paper, 'writting paper', 2.50, '4')
+    cart.add_product(product1)
+    cart.add_product(product2)
+    cart.add_product(product3)
+    cart.add_product(product4)
+
+    assert_equal 4, cart.sorted_products_by_quantity.length
+  end
+
 end
